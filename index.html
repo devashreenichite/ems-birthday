@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Even if we cannot celebrate Your day today together , sooo this is for you ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #ffd6e0, #ffe6f0);
+  padding: 30px;
+  overflow: hidden;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  color: #ff4d6d;
+  animation: float 6s linear infinite;
+  font-size: 20px;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh); opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+.box {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  display: inline-block;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 2;
+}
+
+h1, h2 {
+  font-family: 'Pacifico', cursive;
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #ff4d6d;
+  color: white;
+  cursor: pointer;
+}
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.hidden {
+  display: none;
+}
+
+img {
+  border-radius: 15px;
+  margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<script>
+for(let i=0; i<20; i++){
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.animationDuration = (3 + Math.random()*3) + "s";
+  document.body.appendChild(heart);
+}
+</script>
+
+<div class="box" id="screen1">
+  <h2>Hey you 🧸</h2>
+  <p>Are you ready? 💖</p>
+  <button onclick="next(2)">Enter ❤️</button>
+</div>
+
+<div class="box hidden" id="screen2">
+  <h3>Password please 🔐</h3>
+  <p>The date we first met 👀</p>
+  <input id="pass1" placeholder="DD/MM/YYYY">
+  <br>
+  <button onclick="check1()">Submit</button>
+</div>
+
+<div class="box hidden" id="screen3">
+  <h3>Not so easy 😏</h3>
+  <p>Which animal did we discuss on our date ? 🐾</p>
+  <input id="pass2">
+  <br>
+  <button onclick="check2()">Submit</button>
+</div>
+
+<div class="box hidden" id="screen4">
+  <h3>oooppssss😂</h3>
+  <p>Not the final page…</p>
+  <p>What do I call you ?💌</p>
+  <input id="pass3">
+  <br>
+  <button onclick="check3()">Submit</button>
+</div>
+
+<div class="box hidden" id="final">
+  <h1>🎂 Happy Birthday Ems !!!! ❤️</h1>
+  
+  <p id="typing"></p>
+<img src="test.png" width="220" style="border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.2);">
+  <p>Have a year filled with Happiness and Joyyy 🌸</p>
+</div>
+
+<audio id="music" loop>
+  <source src="LOVE STORY (Taylor Swift) - Violin Cover by Alan Milan - ItsAMoney.mp3" type="audio/mp3">
+</audio>
+
+<script>
+function next(screen){
+  document.querySelectorAll('.box').forEach(e => e.classList.add('hidden'));
+  document.getElementById("screen"+screen).classList.remove('hidden');
+}
+
+function check1(){
+  let val = document.getElementById("pass1").value.trim();
+  if(val === "20/03/26"){
+    next(3);
+  } else {
+    alert("Wrong 😝 try again");
+  }
+}
+
+function check2(){
+  let val = document.getElementById("pass2").value.toLowerCase().trim();
+  if(val === "swans"){
+    next(4);
+  } else {
+    alert("how can you forgettttt 😂");
+  }
+}
+
+function check3(){
+  let val = document.getElementById("pass3").value.toLowerCase().trim();
+  if(val === "ems"){
+    document.querySelectorAll('.box').forEach(e => e.classList.add('hidden'));
+    document.getElementById("final").classList.remove('hidden');
+    playMusic();
+    typeMessage();
+  } else {
+    alert("Hehe wrong again 😜");
+  }
+}
+
+/* Music */
+function playMusic(){
+  let music = document.getElementById("music");
+  music.currentTime = 124;
+  music.volume = 0.5;
+  music.play().catch(() => {});
+}
+
+/* Typing effect */
+let text = `I didn’t expect you…
+
+\n\n\nnot at this time,
+
+not like this. I wasn’t even looking for love,
+
+\n\n\nI had almost convinced myself I wouldn’t feel that way again.
+
+But then… \n\n\nI met you. And something quietly changed.
+
+It’s strange how someone can walk into your life so unexpectedly
+and still feel… familiar.
+
+\n\nComfortable. Easy. \n\n❤️
+
+I just want to live these moments,
+slowly, beautifully… and see it grow into something beautiful ❤️ ❤️
+
+\n\nYou feel like something I didn’t know I was \n\nwaiting for..
+
+Happy Birthday, \n\n\nMr. Perfect!! 🎂`;
+
+let i = 0;
+
+function typeMessage(){
+  let speed = 40;
+  function typing(){
+    if(i < text.length){
+      document.getElementById("typing").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, speed);
+    }
+  }
+  typing();
+}
+
+/* ENTER KEY WORKS ON ALL SCREENS */
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+
+    if (!document.getElementById("screen1").classList.contains("hidden")) {
+      next(2);
+    }
+
+    else if (!document.getElementById("screen2").classList.contains("hidden")) {
+      check1();
+    }
+
+    else if (!document.getElementById("screen3").classList.contains("hidden")) {
+      check2();
+    }
+
+    else if (!document.getElementById("screen4").classList.contains("hidden")) {
+      check3();
+    }
+
+  }
+});
+</script>
+
+</body>
+</html>
